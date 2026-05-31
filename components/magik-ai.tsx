@@ -1,103 +1,115 @@
 "use client"
 
 import { useState } from "react"
-import { Brain, Sparkles } from "lucide-react"
+import { Bot, Sparkles } from "lucide-react"
 
 const CASHTAG = "magickthemook"
-
-const ROI_RESPONSE = `RECURSIVE OMEGA INTELLIGENCE ACTIVATED
-
-1. Recursive Omega Intelligence Analysis Complete
-   ROI has processed all available data streams and generated an optimized action plan.
-
-2. Recursive Omega Intelligence Branch Evaluation:
-   - Branch A: Direct support funnel (94% ROI confidence)
-   - Branch B: Long-form content strategy (71% ROI confidence)
-   - Branch C: Viral story posts (89% ROI confidence)
-
-3. Recursive Omega Intelligence Converged Solution:
-   Focus 100% on emotional direct support posts + clean payment page
-
-4. Recursive Omega Intelligence Output:
-   - Generate 7 high-conversion posts daily via ROI
-   - Optimize for $10 impulse payments using ROI targeting
-   - Track weekly earnings to $${CASHTAG}
-
-5. Recursive Omega Intelligence Immediate Action Plan:
-   Post these 3 ROI-optimized messages today:
-   
-   Post 1: "I'm building something real. $10 to $${CASHTAG}. I reply to every person. https://aegisarcanallc.vercel.app/"
-   
-   Post 2: "Every $10 to $${CASHTAG} helps more than you know. https://aegisarcanallc.vercel.app/"
-   
-   Post 3: "If 10 people support today, everything changes. $10 to $${CASHTAG}. https://aegisarcanallc.vercel.app/"
-
-6. Recursive Omega Intelligence Weekly Projection:
-   $180–$420 into $${CASHTAG} with consistent posting.
-
-Recursive Omega Intelligence will continue evolving this system automatically.`
+const AMOUNTS = [10, 25, 50]
 
 export function MagikAI() {
   const [showOutput, setShowOutput] = useState(false)
 
-  function activateROI() {
+  function pay(amount: number) {
+    const note = `Support $${amount}`
+    const url = `https://cash.app/$${CASHTAG}/${amount}?note=${encodeURIComponent(note)}`
+    window.open(url, "_blank")
+  }
+
+  function generateContent() {
     setShowOutput(true)
     setTimeout(() => {
-      document.getElementById("roi-output")?.scrollIntoView({ behavior: "smooth" })
-    }, 300)
+      document.getElementById("content-output")?.scrollIntoView({ behavior: "smooth" })
+    }, 100)
   }
 
   return (
-    <div className="mx-auto max-w-3xl p-8">
-      {/* Header */}
-      <div className="mb-10 flex items-center justify-between">
-        <div>
-          <div className="text-4xl font-bold tracking-tighter">MAGIK AI</div>
-          <div className="text-sm text-primary">
-            Recursive Omega Intelligence • ${CASHTAG}
+    <div className="bg-zinc-950 text-white">
+      <div className="mx-auto max-w-4xl p-8">
+        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div>
+            <div className="text-5xl font-bold tracking-tighter">MAGIK AI</div>
+            <div className="text-emerald-400">Recursive Omega Intelligence • ${CASHTAG}</div>
+          </div>
+          <div className="text-right">
+            <div className="text-xs text-zinc-500">AUTONOMOUS MODE</div>
+            <div className="text-emerald-400 font-mono">ACTIVE</div>
           </div>
         </div>
-        <div className="text-right">
-          <div className="text-xs text-muted-foreground">CONNECTED TO</div>
-          <div className="font-mono text-primary">${CASHTAG}</div>
+
+        <div className="mb-8 rounded-3xl border border-emerald-500/30 bg-zinc-900 p-8">
+          <div className="text-center mb-6">
+            <h2 className="text-3xl font-bold">Direct Support</h2>
+            <p className="text-zinc-400">Every dollar goes straight to ${CASHTAG}</p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-3">
+            {AMOUNTS.map((amount) => (
+              <button
+                key={amount}
+                type="button"
+                onClick={() => pay(amount)}
+                className="rounded-2xl border border-zinc-700 bg-zinc-800 p-6 text-center transition-all hover:border-emerald-500 hover:bg-emerald-500/10"
+              >
+                <div className="text-4xl font-bold">${amount}</div>
+                <div className="text-sm text-zinc-400">
+                  {amount === 10 ? "Support" : amount === 25 ? "Big Support" : "VIP Support"}
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-3xl border border-emerald-500/30 bg-zinc-900 p-8">
+          <div className="mb-6 flex items-center gap-x-3">
+            <Bot className="h-10 w-10 text-emerald-400" />
+            <div>
+              <div className="text-2xl font-bold">Magik AI Content Engine</div>
+              <div className="text-xs text-emerald-400">YouTube + TikTok • Recursive Omega Intelligence</div>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={generateContent}
+            className="mb-6 flex w-full items-center justify-center gap-x-3 rounded-3xl bg-emerald-500 px-6 py-4 text-lg font-bold text-black transition-all hover:bg-emerald-600 active:scale-[0.985]"
+          >
+            <Sparkles className="h-5 w-5" />
+            <span>GENERATE YOUTUBE + TIKTOK CONTENT</span>
+          </button>
+
+          <div
+            id="content-output"
+            className={`${showOutput ? "block" : "hidden"} mt-6 rounded-2xl bg-zinc-800 p-6 text-sm`}
+          >
+            <div className="mb-4 text-emerald-400 font-semibold">RECURSIVE OMEGA INTELLIGENCE OUTPUT</div>
+
+            <div className="space-y-6">
+              <div>
+                <div className="font-semibold text-emerald-400">VIDEO IDEA (94% Viral Potential)</div>
+                <div>"I Made $100/Day Using Only My Phone for 30 Days (Real Results)"</div>
+              </div>
+
+              <div>
+                <div className="font-semibold text-emerald-400">CALL TO ACTION (End of every video)</div>
+                <div className="mt-2 rounded-xl bg-zinc-900 p-4">
+                  "If this helped you, support the channel at ${CASHTAG}. Every $10 helps me keep creating."
+                </div>
+              </div>
+
+              <div>
+                <div className="font-semibold text-emerald-400">AUTONOMOUS POSTING SCHEDULE</div>
+                <div className="text-sm">
+                  • TikTok: 3 videos/day
+                  <br />
+                  • YouTube Shorts: 2 videos/day
+                  <br />
+                  • Long YouTube: 2 videos/week
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Main Control Card */}
-      <div className="mb-8 rounded-3xl border border-primary/30 bg-card p-8 text-center">
-        <div className="mb-6">
-          <Brain className="mx-auto h-16 w-16 text-primary" />
-        </div>
-        <div className="mb-2 text-2xl font-semibold">
-          Recursive Omega Intelligence Mode
-        </div>
-        <div className="mb-8 text-sm text-muted-foreground">
-          MAGIK AI handles everything using Recursive Omega Intelligence (ROI)
-        </div>
-
-        <button
-          onClick={activateROI}
-          className="w-full rounded-3xl bg-primary py-5 text-xl font-bold text-primary-foreground shadow-[0_0_25px] shadow-primary/50 transition-all hover:bg-primary/90 hover:shadow-[0_0_35px] hover:shadow-primary/60 active:scale-[0.985]"
-        >
-          ACTIVATE RECURSIVE OMEGA INTELLIGENCE
-        </button>
-      </div>
-
-      {/* Output Card */}
-      {showOutput && (
-        <div
-          id="roi-output"
-          className="rounded-3xl border border-border bg-card p-8"
-        >
-          <div className="mb-4 flex items-center gap-2 font-semibold">
-            <Sparkles className="h-5 w-5 text-primary" />
-            <span>Recursive Omega Intelligence Response</span>
-          </div>
-          <div className="whitespace-pre-wrap text-sm leading-relaxed text-muted-foreground">
-            {ROI_RESPONSE}
-          </div>
-        </div>
-      )}
     </div>
   )
 }
