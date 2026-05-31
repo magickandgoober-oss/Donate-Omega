@@ -1,9 +1,9 @@
-import { SupportCard } from "@/components/support-card"
+import { MagikAI } from "@/components/magik-ai"
 
 export default function Page() {
   return (
-    <main className="flex min-h-dvh items-center justify-center bg-background px-4 py-12">
-      <SupportCard />
+    <main className="min-h-dvh bg-zinc-950 text-white">
+      <MagikAI />
     </main>
   )
 }
